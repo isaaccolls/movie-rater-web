@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
+import MovieList from './components/movie-list';
 
-function App() {
-  return (
-    <div className="App">
-      <h1>Movie Rater</h1>
-    </div>
-  );
+class App extends Component {
+  movies = ['titanic', 'avatar'];
+
+  componentDidMount() {
+    
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <h1>Movie Rater</h1>
+        <MovieList movies={this.movies} />
+      </div>
+    );
+  }
 }
 
 export default App;
