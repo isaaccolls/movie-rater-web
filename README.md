@@ -1,3 +1,6 @@
+# Movie Rater Api
+Django API project from Udemy Course [https://www.udemy.com/course/react-django-full-stack/](https://www.udemy.com/course/react-django-full-stack/) 👽🛸
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
