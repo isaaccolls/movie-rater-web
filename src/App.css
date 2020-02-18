@@ -17,3 +17,16 @@ font-size: calc(10px + 2vmin);
 .orange {
     color: orange;
 }
+
+.purple {
+    color: purple;
+}
+
+.rate-container {
+    border-top: 2px solid purple;
+}
+
+.rate-container svg {
+    font-size: 2em;
+    cursor: pointer;
+}

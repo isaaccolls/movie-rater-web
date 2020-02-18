@@ -17,7 +17,7 @@ class App extends Component {
     fetch('http://127.0.0.1:8000/api/movies/', {
       method: 'GET',
       headers: {
-        'Authorization': 'Token 934198eddddfe5a40d6c8ddc04400b5af2cb348f'
+        'Authorization': 'Token 8c667c2fa7048eb4d07aeca5e650b3757ce29220'
       }
     })
       .then(resp => resp.json())
