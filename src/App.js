@@ -38,7 +38,7 @@ class App extends Component {
       <div className="App">
         <h1>Movie Rater</h1>
         <div className="layout">
-          <MovieList movies={this.state.movies} movieClicked={this.movieClicked} />
+          <MovieList movies={this.state.movies} movieClicked={this.loadMovie} />
           <MovieDetails movie={this.state.selectedMovie} updateMovie={this.loadMovie} />
         </div>
       </div>
