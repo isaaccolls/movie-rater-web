@@ -55,6 +55,10 @@ class App extends Component {
     })
   }
 
+  cancelForm = () => {
+    this.setState({editedMovie: null});
+  }
+
   render() {
     return (
       <div className="App">
@@ -73,7 +77,10 @@ class App extends Component {
                 movie={this.state.selectedMovie}
                 updateMovie={this.loadMovie}
               /> :
-              <MovieForm movie={this.state.editedMovie}/> }
+              <MovieForm
+                movie={this.state.editedMovie}
+                cancelForm={this.cancelForm}
+              /> }
           </div>
         </div>
       </div>
