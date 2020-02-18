@@ -28,8 +28,24 @@ class MovieDetails extends Component {
         })
             .then(resp => resp.json())
             .then(res => {
-                console.log(res);
-                // this.setState({movies: res})
+                console.log("rateClicked!!", res);
+                this.getDetails();
+            })
+            .catch(error => console.log(error))
+    }
+
+    getDetails = () => {
+        fetch(`http://127.0.0.1:8000/api/movies/${this.props.movie.id}/`, {
+            method: 'GET',
+            headers: {
+                // 'Content-Type': 'application/json',
+                'Authorization': 'Token 8c667c2fa7048eb4d07aeca5e650b3757ce29220'
+            },
+        })
+            .then(resp => resp.json())
+            .then(res => {
+                console.log("getDetails!!", res);
+                this.props.updateMovie(res);
             })
             .catch(error => console.log(error))
     }
