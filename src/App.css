@@ -13,3 +13,7 @@ font-size: calc(10px + 2vmin);
     grid-template-columns: 1fr 1fr;
     text-align: left;
 }
+
+.orange {
+    color: orange;
+}
