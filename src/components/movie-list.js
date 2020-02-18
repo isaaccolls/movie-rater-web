@@ -7,6 +7,10 @@ function MovieList(props) {
         props.movieClicked(movie);
     };
 
+    const editClicked = movie => {
+        props.editClicked(movie);
+    }
+
     const removeClicked = movie => {
         fetch(`${process.env.REACT_APP_API_URL}/api/movies/${movie.id}/`, {
             method: 'DELETE',
@@ -19,19 +23,30 @@ function MovieList(props) {
             .catch(error => console.log(error))
     };
 
+    const newMovie = () => {
+        props.newMovie();
+    };
+
     return (
         <div>
             { props.movies.map(movie => {
                 return (
-                    <div key={movie.id}>
+                    <div key={movie.id} className="movie-item">
                         <h3 onClick={movieClicked(movie)}>
                             {movie.title}
                         </h3>
-                        <FontAwesomeIcon icon={["fas","edit"]} className={''} />
-                        <FontAwesomeIcon icon={["fas","trash"]} className={''} onClick={() => removeClicked(movie)} />
+                        <FontAwesomeIcon
+                            icon={["fas","edit"]}
+                            onClick={() => editClicked(movie)}
+                        />
+                        <FontAwesomeIcon
+                            icon={["fas","trash"]}
+                            onClick={() => removeClicked(movie)}
+                        />
                     </div>
                 )
             })}
+            <button onClick={newMovie}>Add new</button>
         </div>
     );
 }

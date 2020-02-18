@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import MovieList from './components/movie-list';
-import MovieDetails from './components/movie-details.js';
+import MovieDetails from './components/movie-details';
+import MovieForm from './components/movie-form';
 
 class App extends Component {
 
@@ -10,6 +11,7 @@ class App extends Component {
     this.state = {
       movies: [],
       selectedMovie: null,
+      editedMovie: null,
     };
   }
 
@@ -30,12 +32,27 @@ class App extends Component {
 
   loadMovie = movie => {
     // console.log(movie);
-    this.setState({selectedMovie: movie});
+    this.setState({selectedMovie: movie, editedMovie: null});
   }
 
   movieDeleted = selMovie => {
     const movies = this.state.movies.filter(movie => movie.id !== selMovie.id);
     this.setState({movies: movies, selectedMovie: null});
+  }
+
+  editClicked = selMovie => {
+    // console.log("edit", selMovie);
+    this.setState({editedMovie: selMovie});
+  }
+
+  newMovie = () => {
+    // console.log("newMovie");
+    this.setState({
+      editedMovie: {
+        title: '',
+        description: '',
+      }
+    })
   }
 
   render() {
@@ -47,11 +64,17 @@ class App extends Component {
             movies={this.state.movies}
             movieClicked={this.loadMovie}
             movieDeleted={this.movieDeleted}
+            editClicked={this.editClicked}
+            newMovie={this.newMovie}
           />
-          <MovieDetails
-            movie={this.state.selectedMovie}
-            updateMovie={this.loadMovie}
-          />
+          <div>
+            { !this.state.editedMovie ?
+              <MovieDetails
+                movie={this.state.selectedMovie}
+                updateMovie={this.loadMovie}
+              /> :
+              <MovieForm movie={this.state.editedMovie}/> }
+          </div>
         </div>
       </div>
     );
