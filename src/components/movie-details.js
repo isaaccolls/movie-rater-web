@@ -16,7 +16,7 @@ class MovieDetails extends Component {
     }
 
     rateClicked = stars => evt => {
-        fetch(`http://127.0.0.1:8000/api/movies/${this.props.movie.id}/rate_movie/`, {
+        fetch(`${process.env.REACT_APP_API_URL}/api/movies/${this.props.movie.id}/rate_movie/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ class MovieDetails extends Component {
     }
 
     getDetails = () => {
-        fetch(`http://127.0.0.1:8000/api/movies/${this.props.movie.id}/`, {
+        fetch(`${process.env.REACT_APP_API_URL}/api/movies/${this.props.movie.id}/`, {
             method: 'GET',
             headers: {
                 // 'Content-Type': 'application/json',
