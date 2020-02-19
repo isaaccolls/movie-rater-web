@@ -3,31 +3,37 @@ import MovieList from './movie-list';
 import MovieDetails from './movie-details';
 import MovieForm from './movie-form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { withCookies } from 'react-cookie';
 
 class Movies extends Component {
 
   constructor(props) {
-    super();
+    super(props);
     this.state = {
       movies: [],
       selectedMovie: null,
       editedMovie: null,
+      token: this.props.cookies.get('mr-token'),
     };
   }
 
   componentDidMount() {
-    fetch(`${process.env.REACT_APP_API_URL}/api/movies/`, {
-      method: 'GET',
-      headers: {
-        'Authorization': 'Token 8c667c2fa7048eb4d07aeca5e650b3757ce29220'
-      }
-    })
-      .then(resp => resp.json())
-      .then(res => {
-        console.log(res);
-        this.setState({movies: res})
+    if (this.state.token) {
+      fetch(`${process.env.REACT_APP_API_URL}/api/movies/`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Token ${this.state.token}`
+        }
       })
-      .catch(error => console.log(error))
+        .then(resp => resp.json())
+        .then(res => {
+          console.log(res);
+          this.setState({movies: res})
+        })
+        .catch(error => console.log(error))
+    } else {
+      window.location.href = '/';
+    }
   }
 
   loadMovie = movie => {
@@ -77,18 +83,21 @@ class Movies extends Component {
             movieDeleted={this.movieDeleted}
             editClicked={this.editClicked}
             newMovie={this.newMovie}
+            token={this.state.token}
           />
           <div>
             { !this.state.editedMovie ?
               <MovieDetails
                 movie={this.state.selectedMovie}
                 updateMovie={this.loadMovie}
+                token={this.state.token}
               /> :
               <MovieForm
                 movie={this.state.editedMovie}
                 cancelForm={this.cancelForm}
                 newMovie={this.addedMovie}
                 editedMovie={this.loadMovie}
+                token={this.state.token}
               /> }
           </div>
         </div>
@@ -97,4 +106,4 @@ class Movies extends Component {
   }
 }
 
-export default Movies;
+export default withCookies(Movies);
