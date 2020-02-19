@@ -6,14 +6,14 @@ import './App.css';
 
 function App() {
 
-    return (
-        <BrowserRouter>
-          <div>
-            <Route exact path="/" component={Login} />
-            <Route exact path="/movies" component={Movies} />
-          </div>
-        </BrowserRouter>
-    );
-  }
+  return (
+    <BrowserRouter>
+      <div>
+        <Route exact path="/" component={Login} />
+        <Route exact path="/movies" component={Movies} />
+      </div>
+    </BrowserRouter>
+  );
+}
 
 export default App;
